@@ -1,5 +1,9 @@
+pyTelegramBotAPI==4.12.0
+python-telegram-bot==20.3
 fastapi==0.98.0
 youtube_search_python==1.6.6
 yt_dlp==2023.6.22
 uvicorn
 requests
+fastapi
+
