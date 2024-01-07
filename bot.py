@@ -27,7 +27,8 @@ async def chatMan(update,context):
    # input()
     print(f"started download of {dl_title} from {dl_link}")
     
-    dl_bytes = autodl.download_mp3(dl_link)
+    dl_bytes = autodl.instantMp3(dl_inst)
+    #download_mp3(dl_link)
     #Tele(context,dl_link,up_msg)
     await context.bot.edit_message_text(chat_id=chatid,message_id = up_msg.message_id,text="download completed")
     print("downloaded finished")
@@ -40,6 +41,7 @@ async def startMan(update,context):
 
 async def chatCmd(update,context):
     asyncio.create_task(chatMan(update,context))
+    print("created new tak")
 
 async def init_bot():
     print("loop")
@@ -72,7 +74,7 @@ if (len(py_args)>1):
     token_str = py_args[1]
     print(f"using token: {token_str}")
     app = ApplicationBuilder().token(token = token_str).build()
-    msgctrl = MessageHandler(filters.TEXT,chatMan)
+    msgctrl = MessageHandler(filters.TEXT,chatCmd)
     cmdctrl = CommandHandler("start",startMan)
 
     app.add_handler(cmdctrl)

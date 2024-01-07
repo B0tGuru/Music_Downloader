@@ -1,9 +1,31 @@
-import requests
+import requests,os
 import yt_dlp
 
 def write_bytes_to_file(bytes_data):
     with open("hi.mp3", "ab") as file:
         file.write(bytes_data)
+
+def instantMp3(dl_inst):
+    dl_title = dl_inst["title"]
+    dl_link = dl_inst["link"]
+    dl_id = dl_inst['id']
+    print(f"downloading {dl_title} please wait .....")
+    print(f"started download of {dl_title} from {dl_link}")
+    yt_opts = {'format':'140'}
+    utube = yt_dlp.YoutubeDL(yt_opts)
+    info_dict = utube.extract_info(dl_link, download=True)
+    title_song = f"{dl_title} [{dl_id}].m4a"
+    print("downling ",title_song)
+    afile = open(title_song,'rb')
+    afile_bytes = afile.read()
+    os.remove(title_song)
+    return afile_bytes
+    #for info in info_dict['formats']:
+    #    if (info['ext'] == 'm4a') and (info['format_id']=='140'):
+    #        print("downloading: ",info["url"])
+    #        print('\n\n')
+    #        return info["url"]
+
 
 async def download_mp3Tele(context,url,msg_ctx):
     with yt_dlp.YoutubeDL() as ydl:
