@@ -1,0 +1,5 @@
+fastapi==0.98.0
+youtube_search_python==1.6.6
+yt_dlp==2023.6.22
+uvicorn
+requests
