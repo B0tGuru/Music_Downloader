@@ -1,3 +1,4 @@
+#!./my_env/bin python3
 from telegram.ext import ApplicationBuilder,filters,MessageHandler, CommandHandler
 import autodl,usearch,asyncio,sys
 #from telegram import MessageHandler, CommandHandler
@@ -14,9 +15,9 @@ async def chatMan(update,context):
     print(f"\n\ndownloading: {dl_text}")
    # c_id = update.message.chat.id
     dl_inst = usearch.search_youtube(dl_text)
-    dl_title = dl_inst["title"]
+    xdl_title = dl_inst["title"]
     dl_link = dl_inst["link"]
-
+    dl_title = f"{xdl_title}.m4a"
     chatid = update.message.chat_id
     print(f"\n\nchat id is: {chatid}")
     up_msg  = await update.message.reply_text(f"downloading {dl_title} please wait .....")
